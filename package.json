@@ -1,0 +1,31 @@
+{
+  "name": "developers-directory",
+  "version": "1.0.0",
+  "private": true,
+  "description": "developers-directory",
+  "author": "Amit Gurbani",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "gatsby": "^5.8.1",
+    "gatsby-plugin-manifest": "^5.8.0",
+    "gatsby-plugin-sitemap": "^6.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.31",
+    "@types/react-dom": "^18.0.11",
+    "typescript": "^5.0.3"
+  }
+}
