@@ -16,7 +16,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
 
     createPage({
       path: `/profile/${contributor.github.toLowerCase()}`,
-      component: require.resolve("./src/templates/contributor-graphql.js"),
+      component: require.resolve("./src/templates/contributor-graphql.tsx"),
       context: {
         github: contributor.github,
       },

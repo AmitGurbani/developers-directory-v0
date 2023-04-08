@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { graphql } from "gatsby";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
@@ -12,7 +12,22 @@ export const query = graphql`
   }
 `;
 
-const Contributor = ({ data }) => {
+type ContributorProps = {
+  data: {
+    contributorsJson: {
+      displayName: string;
+      github: string;
+    };
+  };
+};
+
+type GithubData = {
+  user: {
+    avatarUrl: string;
+  };
+};
+
+const Contributor: FunctionComponent<ContributorProps> = ({ data }) => {
   const contributor = data.contributorsJson;
 
   const GITHUB_QUERY = gql`
@@ -22,7 +37,7 @@ const Contributor = ({ data }) => {
     }
   }`;
 
-  const { data: githubData, loading } = useQuery(GITHUB_QUERY);
+  const { data: githubData, loading } = useQuery<GithubData>(GITHUB_QUERY);
 
   return (
     <div>
