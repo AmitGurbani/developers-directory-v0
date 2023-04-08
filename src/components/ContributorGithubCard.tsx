@@ -23,7 +23,15 @@ const ContributorGithubCard: FunctionComponent<ContributorGithubCardProps> = ({
   }`;
 
   const { data, loading } = useQuery<GithubData>(GITHUB_QUERY);
-  return <div>{!loading && <p>{data?.user.avatarUrl}</p>}</div>;
+  return (
+    <div>
+      {!loading && (
+        <a href={data?.user.avatarUrl} className="text-blue-500">
+          GitHub Avatar
+        </a>
+      )}
+    </div>
+  );
 };
 
 export default ContributorGithubCard;

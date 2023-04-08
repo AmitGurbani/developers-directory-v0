@@ -11,8 +11,8 @@ const ContributorHeader: FunctionComponent<ContributorHeaderProps> = ({
 }) => {
   return (
     <div>
-      <h1>{displayName}</h1>
-      <p>{github}</p>
+      <h1 className="text-3xl">{displayName}</h1>
+      <p className="text-2xl">{github}</p>
     </div>
   );
 };

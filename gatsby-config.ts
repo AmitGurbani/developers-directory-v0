@@ -29,6 +29,7 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/data/`,
       },
     },
+    "gatsby-plugin-postcss",
   ],
 };
 
