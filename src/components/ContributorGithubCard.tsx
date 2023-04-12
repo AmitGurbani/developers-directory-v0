@@ -1,67 +1,169 @@
 import React, { FunctionComponent } from "react";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
+import { BsArrowRightShort } from "@react-icons/all-files/bs/BsArrowRightShort";
+import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
+import { HiOutlineUsers } from "@react-icons/all-files/hi/HiOutlineUsers";
 
 type ContributorGithubCardProps = {
   github: string;
 };
 
-type GithubData = {
+type GithubUserData = {
   user: {
     avatarUrl: string;
+    contributionsCollection: {
+      contributionYears: Array<number>;
+      hasAnyContributions: boolean;
+      totalCommitContributions: number;
+      totalIssueContributions: number;
+      totalPullRequestContributions: number;
+      totalPullRequestReviewContributions: number;
+      totalRepositoryContributions: number;
+    };
+    createdAt: string;
+    followers: {
+      totalCount: number;
+    };
+    following: {
+      totalCount: number;
+    };
+    issueComments: {
+      totalCount: number;
+    };
+    issues: {
+      totalCount: number;
+    };
+    name: string;
+    packages: {
+      totalCount: number;
+    };
+    pullRequests: {
+      totalCount: number;
+    };
+    repositories: {
+      totalCount: number;
+    };
+    url: string;
   };
 };
 
 const ContributorGithubCard: FunctionComponent<ContributorGithubCardProps> = ({
   github,
 }) => {
-  const GITHUB_QUERY = gql`
+  const GITHUB_USER_QUERY = gql`
   {
     user(login: "${github}") {
       avatarUrl
+      contributionsCollection {
+        contributionYears
+        hasAnyContributions
+        hasActivityInThePast
+        totalCommitContributions
+        totalIssueContributions
+        totalPullRequestContributions
+        totalPullRequestReviewContributions
+        totalRepositoryContributions
+      }
+      createdAt
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+      }
+      issueComments {
+        totalCount
+      }
+      issues {
+        totalCount
+      }
+      name
+      packages {
+        totalCount
+      }
+      pullRequests {
+        totalCount
+      }
+      repositories {
+        totalCount
+      }
+      url
     }
   }`;
 
-  const { data, loading } = useQuery<GithubData>(GITHUB_QUERY);
+  const { data, loading } = useQuery<GithubUserData>(GITHUB_USER_QUERY);
+
   return (
     <div>
       {!loading && (
-        // <a href={data?.user.avatarUrl} className="text-blue-500">
-        //   GitHub Avatar
-        // </a>
-
-        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-            <img className="rounded-t-lg" src="{data?.user.avatarUrl}" alt="" />
+        <div className="max-w-sm bg-white text-gray-900 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+          <a href={data?.user.url} target="_blank">
+            <img
+              className="rounded-t-lg"
+              src={data?.user.avatarUrl}
+              alt={data?.user.name}
+            />
           </a>
           <div className="p-5">
-            <a href="#">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Noteworthy technology acquisitions 2021
-              </h5>
+            <a href={data?.user.url} target="_blank">
+              <div className="flex">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight">
+                  {github}
+                </h5>
+                <span className="mt-1 ml-1">
+                  (since{" "}
+                  {new Date(data?.user.createdAt as string).getFullYear()})
+                </span>
+              </div>
             </a>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
-            </p>
+            <div className="flex">
+              <HiOutlineUsers size={16} className="mt-1 mr-1" />{" "}
+              {data?.user.followers.totalCount} followers &#x2022;{" "}
+              {data?.user.following.totalCount} following
+            </div>
+            {data?.user.contributionsCollection.hasAnyContributions && (
+              <div>
+                <h6 className="text-xl">Contributions - </h6>
+                <p>
+                  Commits:{" "}
+                  {data?.user.contributionsCollection.totalCommitContributions}
+                </p>
+                <p>
+                  Issues:{" "}
+                  {data?.user.contributionsCollection.totalIssueContributions}
+                </p>
+                <p>
+                  Pull Requests:{" "}
+                  {
+                    data?.user.contributionsCollection
+                      .totalPullRequestContributions
+                  }
+                </p>
+                <p>
+                  Pull Request Reviews:{" "}
+                  {
+                    data?.user.contributionsCollection
+                      .totalPullRequestReviewContributions
+                  }
+                </p>
+                <p>
+                  Repositories:{" "}
+                  {
+                    data?.user.contributionsCollection
+                      .totalRepositoryContributions
+                  }
+                </p>
+              </div>
+            )}
             <a
-              href="#"
+              href={data?.user.url}
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              target="_blank"
             >
-              GitHub
-              <svg
-                aria-hidden="true"
-                className="w-4 h-4 ml-2 -mr-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+              <FaGithub size={24} />
+              <span className="mx-1">{github}</span>
+              <BsArrowRightShort size={24} />
             </a>
           </div>
         </div>
