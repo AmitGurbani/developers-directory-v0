@@ -8,6 +8,7 @@ export const query = graphql`
     contributorsJson(github: { eq: $github }) {
       displayName
       github
+      stackoverflow
     }
   }
 `;
@@ -17,17 +18,18 @@ type ContributorProps = {
     contributorsJson: {
       displayName: string;
       github: string;
+      stackoverflow: string;
     };
   };
 };
 
 const Contributor: FunctionComponent<ContributorProps> = ({ data }) => {
-  const { displayName, github } = data.contributorsJson;
+  const { displayName, github, stackoverflow } = data.contributorsJson;
 
   return (
     <div>
       <ContributorHeader displayName={displayName} github={github} />
-      <ContributorContent github={github} />
+      <ContributorContent github={github} stackoverflow={stackoverflow} />
     </div>
   );
 };
