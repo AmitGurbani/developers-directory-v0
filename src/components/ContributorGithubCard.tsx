@@ -10,7 +10,7 @@ import { GoIssueOpened } from "@react-icons/all-files/go/GoIssueOpened";
 import { GoGitCommit } from "@react-icons/all-files/go/GoGitCommit";
 import { GoGitBranch } from "@react-icons/all-files/go/GoGitBranch";
 // import { VscGitPullRequestNewChanges } from "@react-icons/all-files/vsc/VscGitPullRequestNewChanges";
-
+import { BiGitCompare } from "@react-icons/all-files/bi/BiGitCompare";
 type ContributorGithubCardProps = {
   github: string;
 };
@@ -115,7 +115,7 @@ const ContributorGithubCard: FunctionComponent<ContributorGithubCardProps> = ({
             <a href={data?.user.url} target="_blank">
               <div className="flex">
                 <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {github} 
+                  {github}
                 </h5>
                 <span className="mt-1 ml-2">
                   (since{" "}
@@ -151,6 +151,7 @@ const ContributorGithubCard: FunctionComponent<ContributorGithubCardProps> = ({
                   }
                 </p>
                 <p className="flex">
+                  <BiGitCompare size={16} className="mt-1 mr-1" />
                   Pull Request Reviews:{" "}
                   {
                     data?.user.contributionsCollection
