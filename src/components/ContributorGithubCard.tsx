@@ -5,12 +5,12 @@ import { BsArrowRightShort } from "@react-icons/all-files/bs/BsArrowRightShort";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { HiOutlineUsers } from "@react-icons/all-files/hi/HiOutlineUsers";
 import { VscGitPullRequest } from "@react-icons/all-files/vsc/VscGitPullRequest";
-import {GoRepo } from "@react-icons/all-files/go/GoRepo";
+import { GoRepo } from "@react-icons/all-files/go/GoRepo";
 import { GoIssueOpened } from "@react-icons/all-files/go/GoIssueOpened";
 import { GoGitCommit } from "@react-icons/all-files/go/GoGitCommit";
 import { GoGitBranch } from "@react-icons/all-files/go/GoGitBranch";
-// import { VscGitPullRequestNewChanges } from "@react-icons/all-files/vsc/VscGitPullRequestNewChanges";
 import { BiGitCompare } from "@react-icons/all-files/bi/BiGitCompare";
+
 type ContributorGithubCardProps = {
   github: string;
 };
