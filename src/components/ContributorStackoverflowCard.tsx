@@ -29,16 +29,21 @@ const ContributorStackoverflowCard: FunctionComponent<
               {userData?.display_name}
             </h5>
           </a>
-          <p className="mb-3 font-normal text-amber-400 ">
-            <FaMedal size={16} className="mt-1 ml-2" />
+
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            Reputation
           </p>
 
           <p className="mb-3 font-normal text-amber-400 ">
-            <FaMedal size={16} className="mt-1 ml-2" />
+            <FaMedal size={16} className="mt-1" />
           </p>
 
-          <p className="mb-3 font-normal text-amber-400 ">
-            <FaMedal size={16} className="mt-1 ml-2" />
+          <p className="mb-3 font-normal text-orange-400 ">
+            <FaMedal size={16} className="mt-1" />
+          </p>
+
+          <p className="mb-3 font-normal text-slate-400 ">
+            <FaMedal size={16} className="mt-1" />
           </p>
 
           <a
