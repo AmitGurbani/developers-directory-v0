@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from "react";
 import ContributorGithubCard from "./ContributorGithubCard";
 import ContributorStackoverflowCard from "./ContributorStackoverflowCard";
+import { GithubData } from "../helpers/github";
 
 type ContributorContentProps = {
-  github: string;
+  github: GithubData;
   stackoverflow: string;
 };
 
