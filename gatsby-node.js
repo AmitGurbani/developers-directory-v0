@@ -4,7 +4,12 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
       allContributorsJson {
         edges {
           node {
+            displayName
             github
+            linkedin
+            skills
+            stackoverflow
+            twitter
           }
         }
       }
@@ -18,7 +23,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
       path: `/profile/${contributor.github.toLowerCase()}`,
       component: require.resolve("./src/templates/contributor-graphql.tsx"),
       context: {
-        github: contributor.github,
+        ...contributor
       },
     });
   });
