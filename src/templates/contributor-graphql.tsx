@@ -68,7 +68,7 @@ export async function getServerData(props: ServerProps) {
     };
   } catch {
     return {
-      github: null,
+      props: {},
       status: 500,
     };
   }
