@@ -12,9 +12,6 @@ const ContributorStackoverflowCard: FunctionComponent<
   ContributorStackoverflowCardProps
 > = ({ stackoverflow }) => {
   const { userData, userBadges, userTopTags } = useStackoverflow(stackoverflow);
-  console.log(userData);
-  console.log(userBadges);
-  console.log(userTopTags);
 
   return (
     <div>
