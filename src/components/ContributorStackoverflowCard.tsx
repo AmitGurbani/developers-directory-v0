@@ -3,7 +3,6 @@ import useStackoverflow from "../hooks/useStackoveflow";
 import { FaMedal } from "@react-icons/all-files/fa/FaMedal";
 import { FaStackOverflow } from "@react-icons/all-files/fa/FaStackOverflow";
 import { BsArrowRightShort } from "@react-icons/all-files/bs/BsArrowRightShort";
-import { Link } from "gatsby";
 
 type ContributorStackoverflowCardProps = {
   stackoverflow: string;
@@ -13,6 +12,9 @@ const ContributorStackoverflowCard: FunctionComponent<
   ContributorStackoverflowCardProps
 > = ({ stackoverflow }) => {
   const { userData, userBadges, userTopTags } = useStackoverflow(stackoverflow);
+  console.log(userData);
+  console.log(userBadges);
+  console.log(userTopTags);
 
   return (
     <div>
@@ -28,15 +30,15 @@ const ContributorStackoverflowCard: FunctionComponent<
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {userData?.display_name}
               </h5>
-              <Link
-                to={userData?.link}
+              <a
+                href={userData?.link}
                 className="ml-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 target="_blank"
               >
                 <FaStackOverflow size={24} />
                 <span className="mx-1">{userData?.display_name}</span>
                 <BsArrowRightShort size={24} />
-              </Link>
+              </a>
             </div>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               Reputation - {userData?.reputation}
@@ -58,29 +60,36 @@ const ContributorStackoverflowCard: FunctionComponent<
               </div>
             </div>
 
-            <div>
-              <h1 className="font-normal text-gray-700 dark:text-gray-400">
-                Badges earned - {userBadges.length}
-              </h1>
-              {userBadges.map(({ name, link }) => (
-                <Link to={link} target="_blank">
-                  <span className="mr-2 px-2 bg-orange-200 rounded-full">
-                    {name}
-                  </span>
-                </Link>
-              ))}
-            </div>
+            {userBadges && (
+              <div>
+                <h1 className="font-normal text-gray-700 dark:text-gray-400">
+                  Badges earned - {userBadges.length}
+                </h1>
+                {userBadges.map(({ name, link }) => (
+                  <a key={name} href={link} target="_blank">
+                    <span className="mr-2 px-2 bg-orange-200 rounded-full">
+                      {name}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
 
-            <div>
-              <h1 className="mb-2 font-normal text-gray-700 dark:text-gray-400">
-                Top tags - {userTopTags.length}
-              </h1>
-              {userTopTags.map((tag) => (
-                <span className="mr-2 px-2 bg-orange-200 rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
+            {userTopTags && (
+              <div>
+                <h1 className="mb-2 font-normal text-gray-700 dark:text-gray-400">
+                  Top tags - {userTopTags.length}
+                </h1>
+                {userTopTags.map(({ tag_name }) => (
+                  <span
+                    key={tag_name}
+                    className="mr-2 px-2 bg-orange-200 rounded-full"
+                  >
+                    {tag_name}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

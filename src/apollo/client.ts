@@ -1,4 +1,3 @@
-// src/gatsby-plugin-apollo/client.js
 import fetch from "cross-fetch";
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
