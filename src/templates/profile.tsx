@@ -3,6 +3,7 @@ import { HeadFC, PageProps, graphql } from "gatsby";
 import ContributorHeader from "../components/ContributorHeader";
 import ContributorContent from "../components/ContributorContent";
 import { GithubData, getGithubDataServerSide } from "../helpers/github";
+import UserCard from "../components/UserCard";
 
 export const query = graphql`
   query ($github: String!) {
@@ -43,6 +44,7 @@ const Profile: FunctionComponent<
 
   return (
     <div>
+      
       <ContributorHeader
         displayName={displayName}
         githubUsername={github.user.login}
